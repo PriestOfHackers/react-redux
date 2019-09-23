@@ -2,15 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import './App.css';
 import Table from 'react-bootstrap/Table';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import GetCommits from './GetCommits.js';
+import axios from 'axios';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       repourl : '',
-      timespan : ''
+      timespan : '',
+      name: '',
   };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,54 +30,59 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert(this.state.repourl + " " +this.state.timespan);
+    //alert(this.state.repourl + " " +this.state.timespan);.
+
+    console.log(this.state.repourl + " " +this.state.timespan);
+    
+    const interval = {
+      timespan: this.state.timespan
+    };
+
+    axios.post(this.state.repourl, {  interval })
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    })
+
     event.preventDefault();
   }
 
 
   render() {
+
+    let styles = {
+      width: '400px',
+      height: '250px',
+       justifyContent:'center', 
+       alignItems:'center', 
+       height: '100vh',
+    };
+
+    
     return (
+<div style={styles}>
 <div>
-<div>
-<form onSubmit={this.handleSubmit}>
-
-<Form.Group controlId="formHorizontalEmail">
-    <Form.Label>
-      Email
-    </Form.Label>
-    <Col sm={10}>
-      <Form.Control type="email" placeholder="Email" />
-    </Col>
+<Form  onSubmit={this.handleSubmit}>
+  <Form.Group controlId="formBasicEmail">
+    <Form.Label>Repo Url :</Form.Label>
+    <Form.Control value={this.state.repourl} onChange={this.handleRepoChange}/>
   </Form.Group>
 
-  <Form.Group as={Row} controlId="formHorizontalPassword">
-    <Form.Label column sm={2}>   
-      Password
-    </Form.Label>
-    <Col sm={10}>
-      <Form.Control type="password" placeholder="Password" />
-    </Col>
-  </Form.Group>
-
-        <label>
-          Repo Url :
-          <input type="text" value={this.state.repourl} onChange={this.handleRepoChange} />
-        </label>
-          <br />
-        <label>
-          Timespan :
-        </label>
-              <select onChange={this.handleTimespanChange}>
+  <Form.Group controlId="formBasicPassword">
+    <Form.Label>Timespan :</Form.Label>
+    <Form.Control as="select" onChange={this.handleTimespanChange}>
                 <option value="24Hours">24 hours</option>
                 <option value="lastweek">last week</option>
                 <option value="lastmonth">last month</option>
-              </select>
+                </Form.Control>
  
-        <input type="submit" value="Submit" />
-  <Button variant="primary" type="submit">
+  </Form.Group>
+  <Form.Group>
+  <Button type="submit" value="Submit">
     Submit
   </Button>
-      </form>
+  </Form.Group>
+  </Form>
 </div>
 
 <div>
@@ -95,6 +105,11 @@ class NameForm extends React.Component {
 </tbody>
 </Table>
 </div>
+ <div>
+      <GetCommits>
+      </GetCommits>
+  </div>
+
 </div>
     );
   }
