@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import './App.css';
-import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import GetCommits from './GetCommits.js';
-import axios from 'axios';
-
+import Table1 from './table.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class NameForm extends React.Component {
@@ -16,6 +13,7 @@ class NameForm extends React.Component {
       repourl : '',
       timespan : '',
       name: '',
+      canShow:false,
   };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,22 +28,13 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    //alert(this.state.repourl + " " +this.state.timespan);.
-
     console.log(this.state.repourl + " " +this.state.timespan);
-    
-    const interval = {
-      timespan: this.state.timespan
-    };
 
-    axios.post(this.state.repourl, {  interval })
-    .then(res => {
-      console.log(res);
-      console.log(res.data);
-    })
+    this.setState({canShow: true});
 
     event.preventDefault();
   }
+
 
 
   render() {
@@ -71,9 +60,9 @@ class NameForm extends React.Component {
   <Form.Group controlId="formBasicPassword">
     <Form.Label>Timespan :</Form.Label>
     <Form.Control as="select" onChange={this.handleTimespanChange}>
-                <option value="24Hours">24 hours</option>
-                <option value="lastweek">last week</option>
-                <option value="lastmonth">last month</option>
+                <option value="24hours">24 hours</option>
+                <option value="week">last week</option>
+                <option value="month">last month</option>
                 </Form.Control>
  
   </Form.Group>
@@ -84,33 +73,12 @@ class NameForm extends React.Component {
   </Form.Group>
   </Form>
 </div>
-
 <div>
-<Table>
-<thead>
-  <tr>
-    <th>Username</th>
-    <th>Commmit count</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-    <td>Mark</td>
-    <td>Otto</td>
-  </tr>
-  <tr>
-    <td>Jacob</td>
-    <td>Thornton</td>
-  </tr>
-</tbody>
-</Table>
+      <Table1 canShow={this.state.canShow} interval={this.state.timespan}></Table1>
 </div>
- <div>
-      <GetCommits>
-      </GetCommits>
-  </div>
+</div>
 
-</div>
+
     );
   }
 }

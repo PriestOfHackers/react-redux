@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import './App.css';
 
-class Table extends Component {
+class Table1 extends Component {
   constructor(props) {
      super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
      this.state = { //state is by default an object
