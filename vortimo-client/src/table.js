@@ -8,14 +8,13 @@ class Table1 extends Component {
    constructor(props) {
       super(props) //since we are extending class Table so we have to use super in order to override Component class constructor
       this.state = { //state is by default an object
-         interval :''
+         interval :'',
+         data : null,
       }
    }
 
 
  componentDidMount() {
-
-   console.log("component did mount");
    
       let interval = this.props.interval;
    axios.get('http://localhost:8080/',
@@ -23,7 +22,8 @@ class Table1 extends Component {
     {headers: { "Content-Type": "application/json;charset=UTF-8"}
     })
     .then(function (response) {
-      console.log(response.data);
+
+        console.log(response.data.CommitCounts);
     })
     .catch(function (error) {
       console.log(error);
@@ -47,12 +47,16 @@ class Table1 extends Component {
       </thead>
       <tbody>
         <tr>
-          <td>Mark</td>
-          <td>Otto</td>
+          <td>paseka</td>
+          <td>2</td>
         </tr>
         <tr>
-          <td>Jacob</td>
-          <td>Thornton</td>
+          <td>trueadm</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>acdlite </td>
+          <td>2</td>
         </tr>
       </tbody>
       </Table>;

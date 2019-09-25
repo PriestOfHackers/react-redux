@@ -28,7 +28,7 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log(this.state.repourl + " " +this.state.timespan);
+    //console.log(this.state.repourl + " " +this.state.timespan);
 
     this.setState({canShow: true});
 
@@ -45,6 +45,7 @@ class NameForm extends React.Component {
        justifyContent:'center', 
        alignItems:'center', 
        height: '100vh',
+       left : '100px',
     };
 
     
