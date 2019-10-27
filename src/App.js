@@ -4,6 +4,7 @@ import './App.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Table1 from './table.js';
+import Navbar1 from './navbar.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class NameForm extends React.Component {
@@ -36,6 +37,8 @@ class NameForm extends React.Component {
 
   render() {
 
+
+
     let styles = {
       
        margin: 'auto',
@@ -45,8 +48,12 @@ class NameForm extends React.Component {
 
     
     return (
-
+<div>
+<div>
+      <Navbar1></Navbar1>
+  </div>
 <div style={styles}>
+
 <div>
 <Form  onSubmit={this.handleSubmit}>
   <Form.Group controlId="formBasicEmail">
@@ -74,7 +81,7 @@ class NameForm extends React.Component {
       <Table1 canShow={this.state.canShow} interval={this.state.timespan}></Table1>
 </div>
 </div>
-
+</div>
 
     );
   }
