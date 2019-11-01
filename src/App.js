@@ -36,9 +36,7 @@ class NameForm extends React.Component {
   }
 
   render() {
-
-
-
+    
     let styles = {
       
        margin: 'auto',
