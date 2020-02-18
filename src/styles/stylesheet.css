@@ -79,12 +79,7 @@ html {
     width: 100%;
     margin: 0;
    }
-   .photo {
-    width: calc(100% + 4rem);
-    margin-left: -2rem;
-    margin-top: -2rem;
-    max-width: none;
-   }
+
    .comment{
     width: 100%
    }
